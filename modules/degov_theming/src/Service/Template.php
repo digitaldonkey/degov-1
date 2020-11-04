@@ -83,89 +83,6 @@ class Template {
   }
 
   /**
-   * Suggest.
-   */
-  public function suggest(array &$variables, $hook, array &$info, array $options) {
-
-    $entity_type = $options['entity_type'];
-    $entity_bundles = $options['entity_bundles'];
-    $module_name = $options['module_name'];
-    $entity_view_modes = $options['entity_view_modes'];
-
-    $add_suggestion = FALSE;
-
-    if ($hook === $entity_type) {
-      // Add module overwritten template suggestions for only the entity
-      // bundles that are defined.
-      if ($entity_bundles) {
-        if ($hook === 'media') {
-          $entity = $variables['elements']['#media'];
-        }
-        elseif ($hook === 'taxonomy_term') {
-          $entity = $variables['term'];
-        }
-        else {
-          $entity = $variables[$entity_type];
-        }
-        $entity_bundle = $entity->bundle();
-        // Overwrite the core/contrib template with our module template
-        // in case no custom theme has overwritten the template.
-        if (\in_array($entity_bundle, $entity_bundles, TRUE)) {
-          $add_suggestion = TRUE;
-        }
-      }
-      else {
-        // In case no entity bundles are defined, we still include the
-        // default template override.
-        $add_suggestion = TRUE;
-      }
-    }
-
-    if ($add_suggestion) {
-      // substr($info['theme path'], 0, 14);.
-      $template_path = $info['theme path'];
-      $path_to_active_theme = $this->themeManager->getActiveTheme()->getPath();
-
-      if (strpos($template_path, 'profiles/contrib') === 0 ||
-        strpos($template_path, 'themes/contrib') === 0 ||
-        (strpos($template_path, $path_to_active_theme) === FALSE && strpos($template_path, $this->getInheritedTheme()->getPath()) === FALSE)) {
-        [$variables, $template_filename] = $this->computeTemplateFilename($variables, $entity_view_modes, $entity_type, $entity_bundle ?? NULL);
-        // Does the template exist in the active theme?
-        $theme_templates_dirname = $this->buildPath($path_to_active_theme, 'templates');
-        $template_found = $this->addTemplateToArrayIfFileIsFound($info, 'themes', $template_filename, $theme_templates_dirname);
-        if (!$template_found) {
-          // no? does the template exist in a base theme?
-          $base_themes = $this->themeManager->getActiveTheme()->getBaseThemeExtensions();
-          foreach ($base_themes as $base_theme) {
-            if ($base_theme->getPath() !== NULL) {
-              $theme_templates_dirname = $this->buildPath($base_theme->getPath(), 'templates');
-              if ($this->addTemplateToArrayIfFileIsFound($info, 'themes', $template_filename, $theme_templates_dirname)) {
-                $template_found = TRUE;
-                break;
-              }
-            }
-          }
-        }
-        if (!$template_found) {
-          // no? does the template exist in a module?
-          $module_path = $this->drupalPath->getPath('module', $module_name);
-          if ($module_path) {
-            $module_templates_dirname = $this->buildPath($module_path, 'templates');
-            $this->addTemplateToArrayIfFileIsFound($info, "modules", $template_filename, $module_templates_dirname);
-          }
-        }
-      }
-    }
-    // Include defined entity bundle libraries.
-    if (isset($entity_bundle)) {
-      $library = $this->libraryDiscovery->getLibraryByName($module_name, $entity_bundle);
-      if ($library) {
-        $variables['#attached']['library'][] = $module_name . '/' . $entity_bundle;
-      }
-    }
-  }
-
-  /**
    * Build path.
    */
   private function buildPath(string $base, string $directory): string {
@@ -248,10 +165,10 @@ class Template {
       }
 
       if (isset($entity_bundle)) {
-        $template_filename = $entity_type . '--' . $entity_bundle . '--default';
+        $template_filename = $entity_type . '--' . $entity_bundle;
       }
       else {
-        $template_filename = $entity_type . '--default';
+        $template_filename = $entity_type;
       }
     }
     return [

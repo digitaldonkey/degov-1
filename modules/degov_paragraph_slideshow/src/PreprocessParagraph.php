@@ -170,6 +170,7 @@ final class PreprocessParagraph implements ContainerInjectionInterface {
       $variables['content']['field_slideshow_slides']['#number_of_slides'] = count($propagated_slides);
     }
     $variables['slider_id'] = Html::getUniqueId('degov-slider');
+    $variables['#attached']['library'][] = 'degov_paragraph_slideshow/slideshow';
   }
 
 }

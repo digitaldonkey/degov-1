@@ -103,6 +103,7 @@ function degov_media_copyright_preprocess_paragraph(array &$variables) {
         if ($media->hasField('field_copyright') && !$media->get('field_copyright')->isEmpty()) {
           $copyright = $media->get('field_copyright')->first()->get('entity')->getString();
         }
+        $variables['#attached']['library'][] =  'degov_media_copyright/media-copyright';
         $variables['content']['field_media_copyright'] = [
           '#theme' => 'field_media_copyright',
           '#caption' => $caption,

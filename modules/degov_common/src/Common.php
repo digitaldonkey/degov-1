@@ -12,41 +12,6 @@ namespace Drupal\degov_common;
 class Common {
 
   /**
-   * Adds template suggestions and library implementations.
-   *
-   * Add this to the HOOK_preprocess() of your module. The first 3 arguments
-   * are equal to the ones from the parent HOOK_preprocess().
-   *
-   * @param array &$variables
-   *   Original $variables from the hook_preprocess() function.
-   * @param string $hook
-   *   Original $hook from the hook_preprocess() function.
-   * @param array &$info
-   *   Original $info from the hook_preprocess() function.
-   * @param array $options
-   *   A key named array of options, including:
-   *   - module_name: mandatory value with the name of the module implementing
-   *   the method.
-   *   - entity_type: mandatory value with mostly the entity type created (E.g.
-   *   node, paragraph, media, swiftmailer..)
-   *   - entity_bundles: optional array of entity bundles created, could be
-   *   empty.
-   *   - entity_view_modes: optional array of entity view modes that need
-   *   templates, could be empty.
-   *
-   * TODO:
-   *   Replace this with hook_theme and hook_theme_suggestions_alter and the derivates.
-   * @see \Drupal\degov_theming\Service\Template::suggest()
-   */
-  public static function addThemeSuggestions(array &$variables, $hook, array &$info, array $options) {
-    /**
-     * @var \Drupal\degov_theming\Service\Template $template
-     */
-    $template = \Drupal::service('degov_theming.template');
-    $template->suggest($variables, $hook, $info, $options);
-  }
-
-  /**
    * Remove content.
    *
    * @param array $options

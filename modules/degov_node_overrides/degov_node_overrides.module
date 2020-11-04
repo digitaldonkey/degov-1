@@ -34,42 +34,6 @@ function degov_node_overrides_modules_installed($modules) {
 }
 
 /**
- * Implements hook_preprocess().
- */
-function degov_node_overrides_preprocess(&$variables, $hook, &$info) {
-  /** @var \Drupal\degov_theming\Service\Template $templateService */
-  $templateService = \Drupal::service('degov_theming.template');
-
-  $templateService->suggest($variables, $hook, $info, [
-    'module_name' => 'degov_node_overrides',
-    'entity_type' => 'node',
-    'entity_bundles' => ['blog'],
-    'entity_view_modes' => ['full', 'long_text', 'preview', 'slim', 'small_image']
-  ]);
-
-  $templateService->suggest($variables, $hook, $info, [
-    'module_name' => 'degov_node_overrides',
-    'entity_type' => 'node',
-    'entity_bundles' => ['event'],
-    'entity_view_modes' => ['full', 'latest', 'long_text', 'preview', 'slim', 'small_image']
-  ]);
-
-  $templateService->suggest($variables, $hook, $info, [
-    'module_name' => 'degov_node_overrides',
-    'entity_type' => 'node',
-    'entity_bundles' => ['normal_page'],
-    'entity_view_modes' => ['full', 'long_text', 'preview', 'slim', 'small_image']
-  ]);
-
-  $templateService->suggest($variables, $hook, $info, [
-    'module_name' => 'degov_node_overrides',
-    'entity_type' => 'node',
-    'entity_bundles' => ['press'],
-    'entity_view_modes' => ['full', 'long_text', 'preview', 'slim', 'small_image']
-  ]);
-}
-
-/**
  * Preprocess paragraphs.
  */
 function degov_node_overrides_preprocess_paragraph(&$variables) {

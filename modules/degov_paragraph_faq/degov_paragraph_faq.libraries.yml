@@ -1,5 +1,8 @@
 faq:
   version: 1.0
+  css:
+    theme:
+      css/faq.css: {}
   js:
     js/faq.js: {}
   dependencies:

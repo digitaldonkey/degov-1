@@ -4,19 +4,20 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
-
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_paragraph_video_subtitle_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_video_subtitle',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['video_subtitle'],
-    'entity_view_modes' => ['preview'],
-  ]);
+function degov_paragraph_video_subtitle_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__video_subtitle' => [
+      'template' => 'paragraph--video-subtitle',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__video_subtitle__preview' => [
+      'template' => 'paragraph--video-subtitle--preview',
+      'base hook' => 'paragraph',
+    ],
+  ];
 }
 
 /**
@@ -57,8 +58,6 @@ function degov_paragraph_video_subtitle_preprocess_paragraph__video_subtitle(&$v
   $variables['attributes'] = $attributes;
 }
 
-// phpcs:disable Drupal.NamingConventions.ValidFunctionName.InvalidName
-
 /**
  * Gets the allowed values for the field_subtitle_lang field.
  *
@@ -73,7 +72,5 @@ function getLanguageList() {
   foreach ($languages as $language) {
     $options[$language->getId()] = $language->getName();
   }
-
   return $options;
 }
-// phpcs:enable

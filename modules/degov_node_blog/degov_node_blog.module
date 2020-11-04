@@ -4,17 +4,43 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
-
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_node_blog_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_node_blog',
-    'entity_type' => 'node',
-    'entity_bundles' => ['blog'],
-    'entity_view_modes' => ['teaser', 'slideshow']
-  ]);
+function degov_node_blog_theme($existing, $type, $theme, $path) {
+
+  return [
+    'node__blog' => [
+      'template' => 'node--blog',
+      'base hook' => 'node',
+    ],
+    'node__blog__full' => [
+      'template' => 'node--blog--full',
+      'base hook' => 'node',
+    ],
+    'node__blog__long_text' => [
+      'template' => 'node--blog--long-text',
+      'base hook' => 'node',
+    ],
+    'node__blog__preview' => [
+      'template' => 'node--blog--preview',
+      'base hook' => 'node',
+    ],
+    'node__blog__slim' => [
+      'template' => 'node--blog--slim',
+      'base hook' => 'node',
+    ],
+    'node__blog__small_image' => [
+      'template' => 'node--blog--small-image',
+      'base hook' => 'node',
+    ],
+    'node__blog__slideshow' => [
+      'template' => 'node--blog--slideshow',
+      'base hook' => 'node',
+    ],
+    'node--blog--teaser' => [
+      'template' => 'node--blog--teaser',
+      'base hook' => 'node',
+    ],
+  ];
 }

@@ -21,6 +21,7 @@ set media_classes = [
   'clearfix',
 ]
 %}
+{{ attach_library('degov_media_audio/audio') }}
 <article{{ attributes.addClass(media_classes) }}>
   {{ content.contextual_links }}
   <div class="audio__image-wrapper">

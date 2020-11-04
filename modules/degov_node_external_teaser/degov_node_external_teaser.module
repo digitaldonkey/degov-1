@@ -8,6 +8,32 @@
 use Drupal\Core\Form\FormStateInterface;
 
 /**
+ * Implements hook_theme().
+ */
+function degov_node_external_teaser_theme($existing, $type, $theme, $path) {
+
+  return [
+    'node__external_teaser__long_text' => [
+      'template' => 'node--external-teaser--long-text',
+      'base hook' => 'node',
+    ],
+    'node__external_teaser__preview' => [
+      'template' => 'node--external-teaser--preview',
+      'base hook' => 'node',
+    ],
+    'node__external_teaser__slim' => [
+      'template' => 'node--external-teaser--slim',
+      'base hook' => 'node',
+    ],
+    'node__external_teaser__small_image' => [
+      'template' => 'node--external-teaser--small-image',
+      'base hook' => 'node',
+    ],
+  ];
+}
+
+
+/**
  * Implements hook_form_alter().
  */
 function degov_node_external_teaser_form_alter(&$form, FormStateInterface $form_state, $form_id) {

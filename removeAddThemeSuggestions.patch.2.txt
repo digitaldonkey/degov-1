@@ -1,0 +1,13 @@
+diff --git a/modules/degov_node_overrides/templates/node--press--small-image.html.twig b/modules/degov_node_overrides/templates/node--press--small-image.html.twig
+index cd6f26700..833148768 100644
+--- a/modules/degov_node_overrides/templates/node--press--small-image.html.twig
++++ b/modules/degov_node_overrides/templates/node--press--small-image.html.twig
+@@ -91,7 +91,7 @@
+   <div class="press__teaser-image teaser-image {{ class_sidebar }}">
+   {% if content.field_teaser_image %}
+     <a href="{{ url }}" rel="bookmark">
+-      {{ content.field_teaser_image|field_value|striptagsq }}
++      {{ content.field_teaser_image|field_value|striptags }}
+     </a>
+   {% endif %}
+   </div>

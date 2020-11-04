@@ -78,8 +78,6 @@
   // Assigning controlls to player to use them.
   function assignControlls(iframe) {
     var player = iframe.data('player');
-    console.log(player);
-
     switch (player.type) {
       case 'vimeo':
         // Assigning player controls.

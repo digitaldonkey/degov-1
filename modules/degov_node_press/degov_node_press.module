@@ -4,20 +4,46 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
 use Drupal\views\ViewExecutable;
 
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_node_press_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_node_press',
-    'entity_type' => 'node',
-    'entity_bundles' => ['press'],
-    'entity_view_modes' => ['teaser', 'latest', 'slideshow', 'full']
-  ]);
+function degov_node_press_theme($existing, $type, $theme, $path) {
+  return [
+    'node__press' => [
+      'template' => 'node--press',
+      'base hook' => 'node',
+    ],
+    'node__press__latest' => [
+      'template' => 'node--press--latest',
+      'base hook' => 'node',
+    ],
+    'node__press__long_text' => [
+      'template' => 'node--press--long-text',
+      'base hook' => 'node',
+    ],
+    'node__press__preview' => [
+      'template' => 'node--press--preview',
+      'base hook' => 'node',
+    ],
+    'node__press__slim' => [
+      'template' => 'node--press--slim',
+      'base hook' => 'node',
+    ],
+    'node__press__small_image' => [
+      'template' => 'node--press--small-image',
+      'base hook' => 'node',
+    ],
+    'node__press__slideshow' => [
+      'template' => 'node--press--slideshow',
+      'base hook' => 'node',
+    ],
+    'node__press__teaser' => [
+      'template' => 'node--press--teaser',
+      'base hook' => 'node',
+    ],
+  ];
 }
 
 /**

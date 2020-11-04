@@ -1,0 +1,13 @@
+.paragraph-slideshow-wrapper {
+  position: relative;
+
+  // Reset and set the font size in the Slick slides to work around a known issue with display: inline-block
+  // https://github.com/kenwheeler/slick/issues/3581
+  .slideshow__slides {
+    position: relative;
+    font-size: 0;
+    .slide {
+      font-size: $font-size-base;
+    }
+  }
+}

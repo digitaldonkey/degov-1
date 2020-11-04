@@ -4,17 +4,42 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
-
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_node_normal_page_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_node_normal_page',
-    'entity_type' => 'node',
-    'entity_bundles' => ['normal_page'],
-    'entity_view_modes' => ['teaser', 'slideshow']
-  ]);
+function degov_node_normal_page_theme($existing, $type, $theme, $path) {
+  return [
+    'node__normal_page' => [
+      'template' => 'node--normal-page',
+      'base hook' => 'node',
+    ],
+    'node__normal_page__full' => [
+      'template' => 'node--normal-page--full',
+      'base hook' => 'node',
+    ],
+    'node__normal_page__long_text' => [
+      'template' => 'node--normal-page--long-text',
+      'base hook' => 'node',
+    ],
+    'node__normal_page__preview' => [
+      'template' => 'node--normal-page--preview',
+      'base hook' => 'node',
+    ],
+    'node__normal_page__slim' => [
+      'template' => 'node--normal-page--slim',
+      'base hook' => 'node',
+    ],
+    'node__normal_page__small_image' => [
+      'template' => 'node--normal-page--small-image',
+      'base hook' => 'node',
+    ],
+    'node__normal_page__slideshow' => [
+      'template' => 'node--normal-page--slideshow',
+      'base hook' => 'node',
+    ],
+    'node__normal_page__teaser' => [
+      'template' => 'node--normal-page--teaser',
+      'base hook' => 'node',
+    ],
+  ];
 }

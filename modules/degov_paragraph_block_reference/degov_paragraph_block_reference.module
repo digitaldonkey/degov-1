@@ -5,25 +5,29 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\degov_common\Common;
 
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_paragraph_block_reference_preprocess(&$variables, $hook, &$info) {
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name'       => 'degov_paragraph_block_reference',
-    'entity_type'       => 'paragraph',
-    'entity_bundles'    => ['block_reference'],
-    'entity_view_modes' => ['default', 'preview'],
-  ]);
-
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_block_reference',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['block_reference_sidebar'],
-    'entity_view_modes' => ['default', 'preview'],
-  ]);
+function degov_paragraph_block_reference_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__block_reference' => [
+      'template' => 'paragraph--block-reference',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__block_reference__preview' => [
+      'template' => 'paragraph--block-reference--preview',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__block_reference_sidebar' => [
+      'template' => 'paragraph--block-reference-sidebar',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__block_reference_sidebar__preview' => [
+      'template' => 'paragraph--block-reference-sidebar--preview',
+      'base hook' => 'paragraph',
+    ],
+  ];
 }
 
 /**

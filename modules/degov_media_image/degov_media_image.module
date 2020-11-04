@@ -7,29 +7,46 @@
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\degov_common\Common;
 
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_media_image_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name'       => 'degov_media_image',
-    'entity_type'       => 'media',
-    'entity_bundles'    => ['image'],
-    'entity_view_modes' => [
-      'thumbnail',
-      'usage',
-      'preview',
-      'search',
-      'embedded',
-      'full',
-      'preview_wide',
-      'citation_teaser',
-      'header_logo_slogan',
+function degov_media_image_theme($existing, $type, $theme, $path) {
+
+  return [
+    'media__image' => [
+      'template'  => 'media--image',
+      'base hook' => 'media',
     ],
-  ]);
+    'media__image__embedded' => [
+      'template'  => 'media--image--embedded',
+      'base hook' => 'media',
+    ],
+    'media__image__full' => [
+      'template'  => 'media--image--full',
+      'base hook' => 'media',
+    ],
+    'media__image__preview' => [
+      'template'  => 'media--image--preview',
+      'base hook' => 'media',
+    ],
+    'media__image__preview_wide' => [
+      'template'  => 'media--image--preview_wide',
+      'base hook' => 'media',
+    ],
+    'media__image__search' => [
+      'template'  => 'media--image--search',
+      'base hook' => 'media',
+    ],
+    'media__image__thumbnail' => [
+      'template'  => 'media--image--thumbnail',
+      'base hook' => 'media',
+    ],
+    'media__image__usage' => [
+      'template'  => 'media--image--usage',
+      'base hook' => 'media',
+    ],
+  ];
 }
 
 /**

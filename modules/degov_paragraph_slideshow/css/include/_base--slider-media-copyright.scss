@@ -1,0 +1,41 @@
+.slider--media-copyright {
+  width: 100%;
+
+  .media-copyright {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    width: inherit;
+    opacity: 0;
+    transition: opacity 1800ms ease-in-out;
+
+    &.is-visible {
+      opacity: 1;
+    }
+  }
+
+  // Copyright below Slider (Note there is also a in-slide copyright.)
+  .slideshow-type-1 + &,
+  .slideshow-type-2 + & {
+    text-align: right;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 1;
+  }
+}
+
+// NO-JS fixes
+// Without enabled JS only
+// in slide copyright is used.
+.slider--media-copyright {
+  display: none;
+  .js & {
+    display: block;
+  }
+}
+.js .l-slide-media  {
+  .media-copyright {
+    display: none;
+  }
+}

@@ -4,17 +4,27 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
-
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_paragraph_faq_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_faq',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['faq', 'faq_list'],
-    'entity_view_modes' => ['default', 'preview'],
-  ]);
+function degov_paragraph_faq_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__faq' => [
+      'template' => 'paragraph--faq',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__faq__preview' => [
+      'template' => 'paragraph--faq--preview',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__faq_list' => [
+      'template' => 'paragraph--faq-list',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__faq_list__preview' => [
+      'template' => 'paragraph--faq-list--preview',
+      'base hook' => 'paragraph',
+    ],
+  ];
 }
+

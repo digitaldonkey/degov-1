@@ -1,0 +1,150 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present a media entity.
+ *
+ * Available variables:
+ * - name: Name of the media.
+ * - content: Media content.
+ *
+ * @see template_preprocess_media()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set media_classes = [
+  'media',
+  'media-gallery',
+  'change-outer-copyright',
+  'clearfix',
+]
+%}
+
+{#
+  deGov media gallery is ready to use with photoswipe as full screen overlay.
+    You need to include the MIT code manually
+    @see degov_media_gallery.libraries.yml and js/gallery.js
+    @see https://photoswipe.com/
+ #}
+{% set hasPhotowipe = false %}
+
+{{ attach_library('degov_media_gallery/gallery') }}
+
+<div{{ attributes.addClass(media_classes) }}>
+  {{ content.contextual_links }}
+
+  {% block media_gallery_photoswipe_template %}
+    {% if hasPhotowipe %}
+      {{ attach_library('degov_media_gallery/photoswipe') }}
+      {% include '@degov_media_gallery/include/photoswipe_inc.html.twig' %}
+    {% endif %}
+  {% endblock %}
+
+  <section aria-label="{{ 'Galerie'|t }}" class="media-gallery-wrapper" data-uuid="{{ content.uuid }}">
+    <h3 class="visually-hidden">{{ 'Navigationshinweise zur Galerie'|t }}</h3>
+    <p class="visually-hidden">{{ 'Benutze im nächsten Element die Pfeiltasten links und rechts zum Blättern der Galerie'|t }}</p>
+
+    <div class="media-gallery__images l-slick-slides">
+
+      <div class="slideshow__slides">
+        {% for key, slideshow_slide in content.field_gallery_images if key|first != '#'  %}
+          {{ slideshow_slide }}
+        {% endfor %}
+      </div>
+
+
+
+      {% if content.totalImages > 1 %}
+        {# "Single slide" slideshows do not need that #}
+        <div class="l-slick-navi slick-controls__gallery">
+          <div>
+            <button class="slick__pause slick__pause--gallery">{{ 'Pause'|t }}</button>
+            <button class="slick__play slick__play--gallery">{{ 'Play'|t }}</button>
+          </div>
+
+          <span class="slick__counter">
+            <span class="slick__counter__current">1</span>
+            <span>{{ 'of'|t }}</span>
+            <span class="slick__counter__total">{{ content.totalImages }}</span>
+          </span>
+
+          <span class="slick__download is-hidden">
+            {# href populated by js if download allowed #}
+            <a class="slick__download-link" href="">
+              <i aria-hidden="true" class="fa fa-download"></i>{{ 'Download'|t }}
+            </a>
+          </span>
+
+          {% block media_gallery_photoswipe_button %}
+            {% if hasPhotowipe %}
+              <button class="slick__lightroom media-gallery-js-open-lightroom">
+                <i class="fas fa-expand"></i><span>{{ 'Open image in a lightroom'|t }}</span>
+              </button>
+            {% endif %}
+          {% endblock %}
+
+        </div>
+      {% endif %}
+
+    </div>
+
+    <div class="l-media-gallery-info col-12">
+
+      {% block media_gallery_info_header_block %}
+        <div class="media-gallery__info l-media-gallery__info-header">
+          <span class="media-type__label skin--contrast">
+            {{ 'Galerie'|t }}
+          </span>
+          <div class="slider--media-copyright l-slider-media-copyright">
+            {% for key, slideshow_slide in content.field_gallery_images if key|first != '#' %}
+              {{ slideshow_slide.field_media_copyright }}
+            {% endfor %}
+          </div>
+        </div>
+      {% endblock %}
+
+      {% block media_gallery_info_content_block %}
+        {% if content.field_subtitle|field_value or content.field_description|field_value %}
+          <div class="media-gallery__info">
+
+            {% block field_subtitle_block %}
+              {% if content.field_subtitle %}
+                <h2 class="media-gallery__subtitle"{{ content.field_subtitle|quickedit_attr }}>
+                  {{ content.field_subtitle|field_value }}
+                </h2>
+              {% endif %}
+            {% endblock %}
+
+            {% block field_description_block %}
+              <div class="media-gallery__text"{{ content.field_description|quickedit_attr }}>
+                {{ content.field_description|field_value }}
+              </div>
+            {% endblock %}
+
+            {% set show_field_tags_block = false %}
+            {% block field_tags_block %}
+              {% if show_field_tags_block and content.field_tags|field_value %}
+                <div class="tags"{{ content.field_tags|quickedit_attr }}>
+                  {{ content.field_tags }}
+                </div>
+              {% endif %}
+            {% endblock %}
+
+            {% set show_field_usage_block = false %}
+            {% block field_usage_block %}
+              {% if show_field_usage_block and content.usage %}
+                <div class="media-gallery__usage">
+                  <h2>{{ 'Usage'|trans }}</h2>
+                  {{  content.usage }}
+                </div>
+              {% endif %}
+            {% endblock %}
+
+          </div>
+        {% endif %}
+      {% endblock %}
+
+    </div>
+  </section>
+</div>

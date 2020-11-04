@@ -1,0 +1,17 @@
+$screen-sm-max: 992px !default;
+$screen-lg: 1200px !default;
+$padding-inner-box: 10px !default;
+$font-size-base: 16px !default;
+$peripheral-color-secondary: #0d77b5 !default;
+$peripheral-color-primary: #131315 !default;
+$color-white: #ffff !default;
+
+@import "include/base--paragraph-slideshow-wrapper";
+@import "include/base--slick-navi";
+@import "include/base--slide";
+@import "include/base--slider-media-copyright";
+@import "include/base--video-js-social-media-wrapper";
+@import "include/base--view-mode-slideshow";
+
+@import "include/slideshow-type-1";
+@import "include/slideshow-type-2";

@@ -1,0 +1,36 @@
+.slick-slider .video.js-social-media-wrapper {
+
+  // Message is visible if social media
+  //   type is not enabled by user.
+
+  .video__video:not(.teaser-image) {
+    padding-bottom: 56.25%; // ==> 16/9
+    position: relative;
+    .js-social-media-code {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      .js-social-media-code__message {
+        position: absolute;
+        top: 1em;
+        left: 2%;
+        width: 96%;
+
+        @media (min-width: 600px) {
+          left: 50%;
+          width: 70%;
+          top: 30%;
+
+          // Vertically align 'centerish'.
+          transform: translate(-50%, 100%);
+          //.page-has-sidebar & {
+          //  transform: translate(-50%, 100%);
+          //}
+        }
+      }
+    }
+  }
+}
+

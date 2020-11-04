@@ -1,0 +1,172 @@
+.paragraph-slideshow-wrapper--type_2 {
+
+  $mobileHeight: 160px;
+  $tabHeight: 118px;
+
+  .slideshow-type-2 {
+    position: relative;
+    //@include clearfix;
+
+    .l-slide {
+      position: relative;
+
+      .l-slide-text {
+        // Layout only. Other styles ==> .slide__text
+        margin: 60px 70px $padding-inner-box; // Top keeps space for copyright.
+        width: 100%;
+        max-width: calc(100% - #{ 2 * 70px });
+        overflow: auto;
+        height: $mobileHeight;
+        max-height: $mobileHeight;
+        display: flex;
+
+        .slide__text__sub {
+          .slide__text__sub_vcenter {
+            justify-content: center;
+          }
+        }
+
+        @media (min-width: $screen-sm-max) {
+          position: absolute;
+          z-index: 42;
+          top: auto;
+          right: 0;
+          bottom: 60px;
+          left: 0;
+          display: block;
+          max-width: calc(100% - #{ 2* ($tabHeight + 40px) } ); // (100% - ( 2 * Arrow Width + x-margin)
+          margin: 0 auto;
+          padding: 10px;
+          overflow: auto;
+          max-height: $tabHeight;
+        }
+      }
+
+      .l-slide-media {
+        .no-image {
+          &:before {
+            margin-bottom: 10%;
+          }
+        }
+
+        @media (min-width: $screen-lg) {
+          .no-image {
+            height: calc(1280px / 16 * 9);
+          }
+        }
+      }
+    }
+
+    .l-slick-navi {
+      // Layouted right/left of l-slide-text.
+      justify-content: space-between;
+      position: absolute;
+      bottom: 0;
+      height: 0;
+      width: calc(100% + 40px); // remove default padding.
+
+      .slick-arrow {
+        bottom: ($mobileHeight / 2 + 60px) ; // Arrows centered
+        position: relative;
+        top: auto;
+        right: auto;
+        left: auto;
+        height: inherit;
+        width: 70px;
+
+        @media (min-width: $screen-sm-max) {
+          height: $tabHeight;
+          width: $tabHeight;
+          bottom: 187px;
+          &.slick-next {
+            right: 4 * $padding-inner-box;
+
+          }
+          &.slick-prev {
+            left: 4 * $padding-inner-box;
+          }
+        }
+
+        &::before {
+          @media (min-width: $screen-sm-max) {
+            text-shadow: 2px 2px 5px #000;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: 2;
+            font-size: 75px;
+            margin: 0;
+            line-height: $tabHeight;
+          }
+        }
+
+        .slick-nav-thumb {
+          background-color: rgba($peripheral-color-primary, .8);
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+
+          .slick-nav-thumb-image {
+            display: none;
+            transition: opacity .6s cubic-bezier(0.87, 0, 0.13, 1);
+            @media (min-width: $screen-sm-max) {
+              display: block;
+              position: absolute;
+              top: 0;
+              left: 0;
+              bottom: 0;
+              right: 0;
+              background-size: cover;
+            }
+          }
+        }
+
+      }
+    }
+
+    // By default there is no play/pause in type-2 sliders.
+    .slick-controls {
+      display: none;
+    }
+  }
+
+
+  // Only content.
+  // Layout => .l-slide.
+  .slide__text {
+    background-color: rgba($peripheral-color-primary, .8);
+    color: $color-white;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+      color: inherit;
+    }
+    p {
+      margin-bottom: 0;
+      word-break: break-word;
+    }
+  }
+
+  // Space for "Copyright below Slider".
+  &.has-copyright {
+    @media (min-width: $screen-sm-max) {
+      padding-bottom: 40px;
+    }
+    .slideshow-type-2 + .l-slider-media-copyright {
+      bottom: $mobileHeight + 40px;
+
+      @media (min-width: $screen-sm-max) {
+        bottom: 0; // .l-slide-text now absolute.
+      }
+    }
+  }
+}
+

@@ -4,17 +4,19 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
-
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_paragraph_header_video_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_header_video',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['video_header'],
-    'entity_view_modes' => ['default', 'preview'],
-  ]);
+function degov_paragraph_header_video_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__video_header' => [
+      'template' => 'paragraph--video-header',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__video_header__preview' => [
+      'template' => 'paragraph--video-header--preview',
+      'base hook' => 'paragraph',
+    ],
+  ];
 }
+

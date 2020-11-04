@@ -1,3 +1,7 @@
+.media-gallery-wrapper {
+  position: relative;
+}
+
 .slick__download-link {
   transition: opacity 800ms ease-in-out;
   opacity: 1;

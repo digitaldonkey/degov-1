@@ -4,25 +4,35 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
-
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_media_citation_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_media_citation',
-    'entity_type' => 'media',
-    'entity_bundles' => ['citation'],
-    'entity_view_modes' => [
-      'default',
-      'usage',
-      'preview',
-      'search',
-      'embedded',
-      'full',
-      'preview_wide',
+function degov_media_citation_theme($existing, $type, $theme, $path) {
+
+  return [
+    'media__citation' => [
+      'template'  => 'media--citation',
+      'base hook' => 'media',
     ],
-  ]);
+    'media__citation__embedded' => [
+      'template'  => 'media--citation--embedded',
+      'base hook' => 'media',
+    ],
+    'media__citation__full' => [
+      'template'  => 'media--citation--full',
+      'base hook' => 'media',
+    ],
+    'media__citation__preview' => [
+      'template'  => 'media--citation--preview',
+      'base hook' => 'media',
+    ],
+    'media__citation__search' => [
+      'template'  => 'media--citation--search',
+      'base hook' => 'media',
+    ],
+    'media__citation__usage' => [
+      'template'  => 'media--citation--usage',
+      'base hook' => 'media',
+    ],
+  ];
 }

@@ -4,17 +4,19 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
-
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_paragraph_links_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_links',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['links'],
-    'entity_view_modes' => ['default', 'preview'],
-  ]);
+function degov_paragraph_links_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__links' => [
+      'template' => 'paragraph--links',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__links__preview' => [
+      'template' => 'paragraph--links--preview',
+      'base hook' => 'paragraph',
+    ],
+  ];
 }
+

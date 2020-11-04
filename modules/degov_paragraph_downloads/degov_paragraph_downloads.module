@@ -5,17 +5,18 @@
  * Drupal hooks implementations for the degov_paragraph_downloads module.
  */
 
-use Drupal\degov_common\Common;
-
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_paragraph_downloads_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_downloads',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['downloads'],
-    'entity_view_modes' => ['default', 'preview'],
-  ]);
+function degov_paragraph_downloads_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__downloads' => [
+      'template' => 'paragraph--downloads',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__downloads__preview' => [
+      'template' => 'paragraph--downloads--preview',
+      'base hook' => 'paragraph',
+    ],
+  ];
 }

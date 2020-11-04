@@ -5,7 +5,22 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\degov_common\Common;
+
+/**
+ * Implements hook_theme().
+ */
+function degov_paragraph_overrides_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__media_reference' => [
+      'template' => 'paragraph--media-reference',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__slide' => [
+      'template' => 'paragraph--slide',
+      'base hook' => 'paragraph',
+    ],
+  ];
+}
 
 /**
  * Implements hook_modules_installed().
@@ -15,26 +30,6 @@ function degov_paragraph_overrides_modules_installed($modules) {
   if (in_array('degov_paragraph_slideshow', $modules)) {
     \Drupal::service('degov_config.module_updater')->onModuleInstalled('degov_paragraph_overrides', 'degov_paragraph_slideshow');
   }
-}
-
-/**
- * Implements hook_preprocess().
- */
-function degov_paragraph_overrides_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions for paragraph slideshow.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_overrides',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['slide'],
-    'entity_view_modes' => ['default']
-  ]);
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_overrides',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['media_reference'],
-    'entity_view_modes' => ['default', 'preview'],
-  ]);
 }
 
 /**

@@ -8,22 +8,24 @@
 declare(strict_types=1);
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\degov_common\Common;
 use Drupal\degov_paragraph_view_reference\Form\ViewsSettingsForm;
 use Drupal\degov_paragraph_view_reference\Plugin\Field\FieldType\ViewsReferenceOverride;
 use Drupal\degov_paragraph_view_reference\Plugin\ViewsReferenceSetting\ViewsReferenceArgument;
 
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_paragraph_view_reference_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_view_reference',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['view_reference'],
-    'entity_view_modes' => ['default', 'preview'],
-  ]);
+function degov_paragraph_view_reference_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__view_reference' => [
+      'template' => 'paragraph--view-reference',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__view_reference__preview' => [
+      'template' => 'paragraph--view-reference--preview',
+      'base hook' => 'paragraph',
+    ],
+  ];
 }
 
 /**

@@ -1,0 +1,40 @@
+.slider--media-copyright {
+  width: 100%;
+}
+.slider--media-copyright .media-copyright {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  width: inherit;
+  opacity: 0;
+  transition: opacity 1800ms ease-in-out;
+}
+.slider--media-copyright .media-copyright.is-visible {
+  opacity: 1;
+}
+.slideshow-type-1 + .slider--media-copyright, .slideshow-type-2 + .slider--media-copyright {
+  text-align: right;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.slider--media-copyright {
+  display: none;
+}
+.js .slider--media-copyright {
+  display: block;
+}
+
+.js .l-slide-media .media-copyright {
+  display: none;
+}
+
+.media-copyright > span {
+  padding: 0.2em 0.25em;
+}
+.media-copyright .media-copyright--copyright-label {
+  padding-right: 0.25em;
+}
+

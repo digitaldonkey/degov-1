@@ -8,29 +8,53 @@
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
-use Drupal\degov_common\Common;
 use Drupal\file\Entity\File;
 use Drupal\image\ImageStyleInterface;
 
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_media_video_mobile_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name'       => 'degov_media_video_mobile',
-    'entity_type'       => 'media',
-    'entity_bundles'    => ['video_mobile'],
-    'entity_view_modes' => [
-      'usage',
-      'preview',
-      'search',
-      'embedded',
-      'reference',
-      'full',
-      'preview_wide',
+function degov_media_video_mobile_theme($existing, $type, $theme, $path) {
+
+  return [
+    'media__video_mobile' => [
+      'template' => 'media--video-mobile',
+      'base hook' => 'media',
     ],
-  ]);
+    'media__video_mobile__embedded' => [
+      'template' => 'media--video-mobile--embedded',
+      'base hook' => 'media',
+    ],
+    'media__video_mobile__full' => [
+      'template' => 'media--video-mobile--full',
+      'base hook' => 'media',
+    ],
+    'media__video_mobile__preview' => [
+      'template' => 'media--video-mobile--preview',
+      'base hook' => 'media',
+    ],
+    'media__video_mobile__preview_wide' => [
+      'template' => 'media--video-mobile--preview_wide',
+      'base hook' => 'media',
+    ],
+    'media__video_mobile__reference' => [
+      'template' => 'media--video-mobile--reference',
+      'base hook' => 'media',
+    ],
+    'media__video_mobile__search' => [
+      'template' => 'media--video-mobile--search',
+      'base hook' => 'media',
+    ],
+    'media__video_mobile__slider_main_16_9' => [
+      'template' => 'media--video-mobile--slider-main-16-9',
+      'base hook' => 'media',
+    ],
+
+    'media__video_mobile__usage' => [
+      'template' => 'media--video-mobile--usage',
+      'base hook' => 'media',
+    ],
+  ];
 }
 
 /**

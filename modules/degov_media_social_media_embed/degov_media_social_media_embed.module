@@ -5,20 +5,35 @@
  */
 
 use Drupal\Component\Utility\Xss;
-use Drupal\degov_common\Common;
 use Drupal\media\MediaInterface;
 
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_media_social_media_embed_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_media_social_media_embed',
-    'entity_type' => 'media',
-    'entity_bundles' => ['some_embed'],
-    'entity_view_modes' => ['usage', 'preview', 'search', 'embedded'],
-  ]);
+function degov_media_social_media_embed_theme($existing, $type, $theme, $path) {
+
+  return [
+    'media__some_embed' => [
+      'template' => 'media--some-embed',
+      'base hook' => 'media',
+    ],
+    'media__some_embed__embedded' => [
+      'template' => 'media--some-embed--embedded',
+      'base hook' => 'media',
+    ],
+    'media__some_embed__preview' => [
+      'template' => 'media--some-embed--preview',
+      'base hook' => 'media',
+    ],
+    'media__some_embed__search' => [
+      'template' => 'media--some-embed--search',
+      'base hook' => 'media',
+    ],
+    'media__some_embed__usage' => [
+      'template' => 'media--some-embed--usage',
+      'base hook' => 'media',
+    ],
+  ];
 }
 
 /**

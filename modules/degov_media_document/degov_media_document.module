@@ -4,11 +4,43 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
 use Drupal\degov_media_document\Helper\DocumentLinkHelper;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\media\Entity\MediaType;
+
+/**
+ * Implements hook_theme().
+ */
+function degov_media_document_theme($existing, $type, $theme, $path) {
+
+  return [
+    'media__document' => [
+      'template'  => 'media--document',
+      'base hook' => 'media',
+    ],
+    'media__document__content_search' => [
+      'template'  => 'media--document--content_search',
+      'base hook' => 'media',
+    ],
+    'media__document__embedded' => [
+      'template'  => 'media--document--embedded',
+      'base hook' => 'media',
+    ],
+    'media__document__preview' => [
+      'template'  => 'media--document--preview',
+      'base hook' => 'media',
+    ],
+    'media__document__search' => [
+      'template'  => 'media--document--search',
+      'base hook' => 'media',
+    ],
+    'media__document__usage' => [
+      'template'  => 'media--document--usage',
+      'base hook' => 'media',
+    ],
+  ];
+}
 
 /**
  * Implements hook_preprocess().
@@ -50,14 +82,6 @@ function degov_media_document_preprocess(array &$variables, string $hook, array 
       }
     }
   }
-
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_media_document',
-    'entity_type' => 'media',
-    'entity_bundles' => ['document'],
-    'entity_view_modes' => ['usage', 'preview', 'search', 'embedded', 'content_search'],
-  ]);
 }
 
 /**

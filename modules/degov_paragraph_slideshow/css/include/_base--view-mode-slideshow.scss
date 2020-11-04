@@ -1,0 +1,62 @@
+.view-mode-slideshow {
+  display: flex;
+
+  // Reset and set the font size in the Slick slides to work around a known issue with display: inline-block
+  // https://github.com/kenwheeler/slick/issues/3581
+  font-size: $font-size-base;
+
+  .l-slide {
+    width: 100%;
+
+    .l-slide-media {
+      position: relative;
+      display: block; // this is a link.
+      &:hover {
+        text-decoration: none;
+      }
+
+      .no-image {
+        //@include icon-before($fa-var-image);
+        height: calc(100vw / 16 * 9);
+        //color: $gray-light;
+        //background: $gray-dark;
+        text-align: center;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:before {
+          font-size: 26vw;
+          margin: 10px;
+        }
+
+        @media (min-width: $screen-lg) {
+          &:before {
+            font-size: 440px;
+          }
+        }
+      }
+
+    }
+    .l-slide-text {
+      position: relative;
+
+      .slideshow-content-type-label,
+      h1, h2, h3, h4, h5, h6 {
+        font-weight: bold;
+      }
+
+      .slideshow-content {
+        @media (min-width: $screen-sm-max) {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          right: 20px;
+          bottom: 20px;
+          width: calc(100% - 40px);
+        }
+      }
+    }
+  }
+}

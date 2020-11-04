@@ -5,20 +5,22 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\degov_common\Common;
 use Drupal\node\Entity\NodeType;
 
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_paragraph_node_reference_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_node_reference',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['node_reference'],
-    'entity_view_modes' => ['default', 'preview'],
-  ]);
+function degov_paragraph_node_reference_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__node_reference' => [
+      'template' => 'paragraph--node-reference',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__node_reference__preview' => [
+      'template' => 'paragraph--node-reference--preview',
+      'base hook' => 'paragraph',
+    ],
+  ];
 }
 
 /**

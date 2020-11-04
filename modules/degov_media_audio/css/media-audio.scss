@@ -1,0 +1,17 @@
+.audio__audio > audio{
+  // Revert common bad height auto style.
+  height: 54px;
+  height: revert;
+}
+
+.audio__transcription {
+  .audio__transcription__header:after {
+    content: '▿';
+    display: inline-block;
+    transition: .25s ease-in-out;
+  }
+
+  &.is-open .audio__transcription__header:after {
+    transform: rotate(180deg);
+  }
+}

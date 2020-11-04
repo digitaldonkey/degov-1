@@ -1,0 +1,16 @@
+@charset "UTF-8";
+.audio__audio > audio {
+  height: 54px;
+  height: revert;
+}
+
+.audio__transcription .audio__transcription__header:after {
+  content: "▿";
+  display: inline-block;
+  transition: 0.25s ease-in-out;
+}
+.audio__transcription.is-open .audio__transcription__header:after {
+  transform: rotate(180deg);
+}
+
+/*# sourceMappingURL=media-audio.css.map */

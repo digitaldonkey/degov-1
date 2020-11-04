@@ -3,10 +3,11 @@ process:
     js/process.js: {}
   css:
     theme:
-      css/style.min.css: {}
+      css/style.css: {}
   dependencies:
     - core/jquery
     - core/drupal
     - core/drupalSettings
     - core/jquery.once
     - core/jquery.cookie
+    - core/drupal.dialog.ajax

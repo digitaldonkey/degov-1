@@ -1,0 +1,15 @@
+@charset "UTF-8";
+.faq-paragraph .faq-question {
+  font-weight: bold;
+  padding-bottom: 0.5em;
+}
+.faq-paragraph .faq-question:after {
+  content: "▿";
+  display: inline-block;
+  transition: 0.25s ease-in-out;
+}
+.faq-paragraph.is-openend .faq-question:after {
+  transform: rotate(180deg);
+}
+
+/*# sourceMappingURL=faq.css.map */

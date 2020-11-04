@@ -4,17 +4,19 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
-
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_paragraph_header_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_header',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['image_header'],
-    'entity_view_modes' => ['default', 'preview'],
-  ]);
+function degov_paragraph_header_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__image_header' => [
+      'template' => 'paragraph--image-header',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__image_header__preview' => [
+      'template' => 'paragraph--image-header--preview',
+      'base hook' => 'paragraph',
+    ],
+  ];
 }
+

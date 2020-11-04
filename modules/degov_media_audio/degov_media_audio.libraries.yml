@@ -1,4 +1,7 @@
 audio:
   version: 1.0
   js:
-    js/audio.js: {}
+    js/media-audio.js: {}
+  css:
+    theme:
+      css/media-audio.css: {}

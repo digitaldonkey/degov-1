@@ -4,17 +4,14 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
-
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_taxonomy_term_section_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_taxonomy_term_section',
-    'entity_type' => 'taxonomy_term',
-    'entity_bundles' => ['section'],
-    'entity_view_modes' => [],
-  ]);
+function degov_paragraph_taxonomy_term_section_theme($existing, $type, $theme, $path) {
+  return [
+    'taxonomy_term__section' => [
+      'template' => 'taxonomy-term--section',
+      'base hook' => 'taxonomy_term',
+    ],
+  ];
 }

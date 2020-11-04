@@ -5,7 +5,6 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\degov_common\Common;
 use Drupal\node\Entity\Node;
 
 /**
@@ -28,47 +27,6 @@ function degov_taxonomies_modules_installed($modules) {
   if (in_array('degov_media_facts', $modules)) {
     \Drupal::service('degov_config.module_updater')->onModuleInstalled('degov_taxonomies', 'degov_media_facts');
   }
-}
-
-/**
- * Implements hook_preprocess().
- */
-function degov_taxonomies_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions for blog.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_taxonomies',
-    'entity_type' => 'node',
-    'entity_bundles' => ['blog'],
-    'entity_view_modes' => ['teaser']
-  ]);
-  // Add template suggestions for event.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_taxonomies',
-    'entity_type' => 'node',
-    'entity_bundles' => ['event'],
-    'entity_view_modes' => ['long_text', 'preview', 'slim', 'small_image', 'teaser']
-  ]);
-  // Add template suggestions for blog.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_taxonomies',
-    'entity_type' => 'node',
-    'entity_bundles' => ['normal_page'],
-    'entity_view_modes' => ['long_text', 'preview', 'slim', 'small_image', 'teaser']
-  ]);
-  // Add template suggestions for press.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_taxonomies',
-    'entity_type' => 'node',
-    'entity_bundles' => ['press'],
-    'entity_view_modes' => ['long_text', 'preview', 'slim', 'small_image', 'teaser']
-  ]);
-  // Add template suggestions for press.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_taxonomies',
-    'entity_type' => 'media',
-    'entity_bundles' => ['facts'],
-    'entity_view_modes' => ['usage', 'preview', 'search', 'embedded']
-  ]);
 }
 
 /**

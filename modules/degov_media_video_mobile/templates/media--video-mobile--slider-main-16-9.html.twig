@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present a media entity.
+ *
+ * Available variables:
+ * - name: Name of the media.
+ * - content: Media content.
+ *
+ * @see template_preprocess_media()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set caption %}
+  {{- content.field_video_upload_caption -}}
+{% endset %}
+{% set copyright %}
+  {{- content.field_copyright -}}
+{% endset %}
+{%
+  set media_classes = [
+  'video-mobile',
+  'clearfix',
+]
+%}
+<article{{ attributes.addClass(media_classes) }}>
+  {{ content.contextual_links }}
+  <div class="video-mobile__video">
+    <video{{ video_attributes }}>
+      {% for key, subtitle in content.field_video_upload_subtitle if key|first != '#' %}
+        {{ subtitle }}
+      {% endfor %}
+    </video>
+  </div>
+</article>

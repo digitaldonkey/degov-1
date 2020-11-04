@@ -4,17 +4,19 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
-
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_paragraph_iframe_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_iframe',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['iframe'],
-    'entity_view_modes' => ['default', 'preview'],
-  ]);
+function degov_paragraph_video_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__iframe' => [
+      'template' => 'paragraph--iframe',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__video__preview' => [
+      'template' => 'paragraph--iframe--preview',
+      'base hook' => 'paragraph',
+    ],
+  ];
 }
+

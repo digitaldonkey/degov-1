@@ -5,41 +5,48 @@
  * Contains hooks and custom functionds for the degov_media_gallery module.
  */
 
-use Drupal\degov_common\Common;
 use Drupal\media\Entity\Media;
 
 /**
  * Implements hook_theme().
  */
 function degov_media_gallery_theme($existing, $type, $theme, $path) {
-  // Static template with Photoswipe UI.
+
   return [
+    'media__gallery' => [
+      'template'  => 'media--gallery',
+      'base hook' => 'media',
+    ],
+    'media__gallery__embedded' => [
+      'template'  => 'media--gallery--embedded',
+      'base hook' => 'media',
+    ],
+    'media__gallery__full' => [
+      'template'  => 'media--gallery--full',
+      'base hook' => 'media',
+    ],
+    'media__gallery__preview' => [
+      'template'  => 'media--gallery--preview',
+      'base hook' => 'media',
+    ],
+    'media__gallery__preview_wide' => [
+      'template'  => 'media--gallery--preview_wide',
+      'base hook' => 'media',
+    ],
+    'media__gallery__search' => [
+      'template'  => 'media--gallery--search',
+      'base hook' => 'media',
+    ],
+    'media__gallery__usage' => [
+      'template'  => 'media--gallery--usage',
+      'base hook' => 'media',
+    ],
+    // Static template for (non-GPL) Photoswipe UI. Read more in media.gallery.html.twig.
     'photoswipe_inc'  => [
       'variables' => [],
-      'template'  => 'include/photoswipe_inc.html.twig',
+      'template'  => 'include/photoswipe_inc',
     ],
   ];
-}
-
-/**
- * Implements hook_preprocess().
- */
-function degov_media_gallery_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name'       => 'degov_media_gallery',
-    'entity_type'       => 'media',
-    'entity_bundles'    => ['gallery'],
-    'entity_view_modes' => [
-      'usage',
-      'preview',
-      'search',
-      'embedded',
-      'reference',
-      'full',
-      'preview_wide',
-    ],
-  ]);
 }
 
 /**

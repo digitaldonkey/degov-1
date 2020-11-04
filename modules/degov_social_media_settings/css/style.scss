@@ -16,7 +16,26 @@
 $link-color: #007bff !default;
 $white: #fff !default;
 
+// Hides dialog defalt title bar.
+.dialog.no-title .ui-dialog-titlebar {
+  display:none;
+}
+
+// Dialog content.
 .social-media-settings {
+  &[aria-hidden],
+  span[aria-hidden] {
+    display: none;
+  }
+
+  .collapse {
+    border: 1px solid red;
+    height: auto;
+    overflow: hidden;
+    &[aria-expanded="false"] {
+      height: 0;
+    }
+  }
 
   .social-media-settings__settings-list {
     list-style-type: none;
@@ -39,7 +58,6 @@ $white: #fff !default;
       background: transparent;
     }
   }
-
 
   &__cancel,
   &__save {

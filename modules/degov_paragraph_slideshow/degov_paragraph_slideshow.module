@@ -4,21 +4,7 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
 use Drupal\degov_paragraph_slideshow\PreprocessParagraph;
-
-/**
- * Implements hook_preprocess().
- */
-function degov_paragraph_slideshow_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_slideshow',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['slide', 'slideshow'],
-    'entity_view_modes' => ['preview'],
-  ]);
-}
 
 /**
  * Implements hook_theme().
@@ -29,8 +15,17 @@ function degov_paragraph_slideshow_theme($existing, $type, $theme, $path) {
       'template' => 'node--slideshow',
       'base hook' => 'node'
     ],
+    'paragraph__slide' => [
+      'template' => 'paragraph--slide',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__slideshow' => [
+      'template' => 'paragraph--slideshow',
+      'base hook' => 'paragraph',
+    ],
   ];
 }
+
 
 /**
  * Implements hook_preprocess_paragraph().

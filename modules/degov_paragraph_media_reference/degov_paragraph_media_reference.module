@@ -5,21 +5,23 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\degov_common\Common;
 use Drupal\media\Entity\MediaType;
 use Drupal\paragraphs_edit\Form\ParagraphEditForm;
 
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_paragraph_media_reference_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_paragraph_media_reference',
-    'entity_type' => 'paragraph',
-    'entity_bundles' => ['media_reference'],
-    'entity_view_modes' => ['default', 'preview'],
-  ]);
+function degov_paragraph_media_reference_theme($existing, $type, $theme, $path) {
+  return [
+    'paragraph__media_reference' => [
+      'template' => 'paragraph--media-reference',
+      'base hook' => 'paragraph',
+    ],
+    'paragraph__media_reference__preview' => [
+      'template' => 'paragraph--media-reference--preview',
+      'base hook' => 'paragraph',
+    ],
+  ];
 }
 
 /**

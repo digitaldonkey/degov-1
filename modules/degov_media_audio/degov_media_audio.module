@@ -6,27 +6,46 @@
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Template\Attribute;
-use Drupal\degov_common\Common;
 
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_media_audio_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_media_audio',
-    'entity_type' => 'media',
-    'entity_bundles' => ['audio'],
-    'entity_view_modes' => [
-      'usage',
-      'preview',
-      'search',
-      'embedded',
-      'reference',
-      'full',
-      'preview_wide',
+function degov_media_audio_theme($existing, $type, $theme, $path) {
+
+  return [
+    'media__audio' => [
+      'template'  => 'media--audio',
+      'base hook' => 'media',
     ],
-  ]);
+    'media__audio__full' => [
+      'template'  => 'media--audio--full',
+      'base hook' => 'media',
+    ],
+    'media__audio__preview' => [
+      'template'  => 'media--audio--preview',
+      'base hook' => 'media',
+    ],
+    'media__audio__embedded' => [
+      'template'  => 'media--audio--embedded',
+      'base hook' => 'media',
+    ],
+    'media__audio__preview_wide' => [
+      'template'  => 'media--audio--preview_wide',
+      'base hook' => 'media',
+    ],
+    'media__audio__reference' => [
+      'template'  => 'media--audio--reference',
+      'base hook' => 'media',
+    ],
+    'media__audio__search' => [
+      'template'  => 'media--audio--search',
+      'base hook' => 'media',
+    ],
+    'media__audio__usage' => [
+      'template'  => 'media--audio--usage',
+      'base hook' => 'media',
+    ],
+  ];
 }
 
 /**

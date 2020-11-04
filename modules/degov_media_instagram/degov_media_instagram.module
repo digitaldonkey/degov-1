@@ -4,17 +4,31 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
-
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_media_instagram_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_media_instagram',
-    'entity_type' => 'media',
-    'entity_bundles' => ['instagram'],
-    'entity_view_modes' => ['usage', 'preview', 'search', 'embedded'],
-  ]);
+function degov_media_instagram_theme($existing, $type, $theme, $path) {
+
+  return [
+    'media__instagram' => [
+      'template'  => 'media--instagram',
+      'base hook' => 'media',
+    ],
+    'media__instagram__embedded' => [
+      'template'  => 'media--instagram--embedded',
+      'base hook' => 'media',
+    ],
+    'media__instagram__preview' => [
+      'template'  => 'media--instagram--preview',
+      'base hook' => 'media',
+    ],
+    'media__instagram__search' => [
+      'template'  => 'media--instagram--search',
+      'base hook' => 'media',
+    ],
+    'media__instagram__usage' => [
+      'template'  => 'media--instagram--usage',
+      'base hook' => 'media',
+    ],
+  ];
 }

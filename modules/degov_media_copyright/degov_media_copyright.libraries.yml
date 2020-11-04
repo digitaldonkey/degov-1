@@ -1,0 +1,5 @@
+media-copyright:
+  version: 1.x
+  css:
+    state:
+      css/media-copyright.css: {}

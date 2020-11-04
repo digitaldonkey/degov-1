@@ -4,17 +4,14 @@
  * @file
  */
 
-use Drupal\degov_common\Common;
-
 /**
- * Implements hook_preprocess().
+ * Implements hook_theme().
  */
-function degov_taxonomy_media_accessibility_preprocess(&$variables, $hook, &$info) {
-  // Add template suggestions and libraries implemented in this module.
-  Common::addThemeSuggestions($variables, $hook, $info, [
-    'module_name' => 'degov_taxonomy_media_accessibility',
-    'entity_type' => 'taxonomy_term',
-    'entity_bundles' => ['media_accessibility'],
-    'entity_view_modes' => [],
-  ]);
+function degov_taxonomy_media_accessibility_theme($existing, $type, $theme, $path) {
+  return [
+    'taxonomy_term__media_accessibility' => [
+      'template' => 'taxonomy-term--media-accessibility',
+      'base hook' => 'taxonomy_term',
+    ],
+  ];
 }

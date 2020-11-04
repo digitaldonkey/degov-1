@@ -23,17 +23,46 @@
       settings = drupalSettings.degov_social_media_settings;
       modal.once('social-media-settings-init').each(function () {
 
+      // Move the modal outside of the page wrappers, to prevent styling overwrites.
+      modal.detach().appendTo('body');
+      $(document).on('click', '[data-target="#social-media-settings"]', function () {
+        modal
+          .dialog({
+            modal: true,
+            width: 'auto',
+            maxWidth: 600,
+            fluid: true,
+            dialogClass: 'no-title'
+          })
+          .attr('aria-hidden', false);
+        openModal();
+      });
+
+      $(document).on('click', '[data-dismiss="modal"]', function () {
+        modal
+          .dialog('close')
+          .attr('aria-hidden', false);
+        openModal();
+      });
+
+      modal.on('click', '.show-more', function () {
+        $(this).attr('aria-hidden', true);
+        $('.social-media-read-more__overlay').hide();
+        $('.collapse', modal).attr('aria-expanded', true);
+      });
+
+        // Bootstrap version.
         // Move the modal outside of the page wrappers, to prevent styling overwrites.
-        modal.detach().appendTo('body');
-        modal.on({
-          'hidden.bs.modal': function () {
-            modal.attr('aria-hidden', true);
-          },
-          'shown.bs.modal': function () {
-            openModal();
-            modal.attr('aria-hidden', false).find('h2').focus();
-          }
-        });
+        //
+        // modal.on({
+        //   'hidden.bs.modal': function () {
+        //     modal.attr('aria-hidden', true);
+        //   },
+        //   'shown.bs.modal': function () {
+        //     openModal();
+        //     modal.attr('aria-hidden', false).find('h2').focus();
+        //   }
+        // });
 
         // Initialize when cookies are accepted by eu_cookie_compliance module.
         $('.agree-button').on({
@@ -308,4 +337,4 @@
     return obj3;
   }
 
-})(jQuery, Drupal, drupalSettings);
+})(jQuery, Drupal, drupalSettings)
